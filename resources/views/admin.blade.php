@@ -14,11 +14,17 @@
         @guest
                 <form action="/admin_signin" method="post">
                     @csrf
-                    <input name="login" placeholder="login">
-                    <input name="password" type="password" placeholder="password">
+
+                    <input id="login" name="login" placeholder="login"  class="@error('login_valid') is-invalid @enderror" />
+                    <input name="password" type="password" placeholder="password" class="@error('pass_valid') is-invalid @enderror" />
+                    @error('login_valid')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    @error('pass_valid')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <input type="submit" value="Войти">
                 </form>
         @endguest
-
     </div>
 @endsection
